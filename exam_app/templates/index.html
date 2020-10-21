@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form{
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        body{
+            max-width: 900px;
+            margin: auto;
+            padding: 10px;
+        }
+
+        .register{
+            margin-right: 200px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Welcome!</h1>
+
+    <form action="/createUser" method="POST" class="register">
+        {% csrf_token %}
+        <h1>Register</h1>
+        <p class="name">Name: <input type="text" name="name"></p>
+        <p class="usernameReg">Username: <input type="text" name="usernameReg"></p>
+        <p class="password">Password: <input type="text" name="passwordReg"></p>
+        <p class="confirmPW">Confirm PW: <input type="text" name="confirmPW"></p>
+        <button type="submit" value="Register">Register</button>
+    </form>
+
+    <form action="/login" method="POST" class="login">
+        {% csrf_token %}
+        <h1>Login</h1>
+        <p class="usernameLog">Username: <input type="text" name="usernameLog"></p>
+        <p class="passwordLog">Password: <input type="text" name="passwordLog"></p>
+        <button type="submit" value="login">Login</button>
+    </form>
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <p style="color: red;">{{ message }}</p>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+</body>
+</html>
